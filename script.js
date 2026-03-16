@@ -97,8 +97,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const formSuccess = document.getElementById('formSuccess');
 
     if (contactForm) {
+        // Client-side validation
+        function validateForm() {
+            let isValid = true;
+            const formGroups = contactForm.querySelectorAll('.form-group');
+            
+            formGroups.forEach(function(group) {
+                const input = group.querySelector('input, textarea');
+                const errorMsg = group.querySelector('.error-message') || document.createElement('div');
+                errorMsg.className = 'error-message';
+                
+                // Clear previous errors
+                input.classList.remove('error');
+                if (errorMsg.parentNode) errorMsg.parentNode.removeChild(errorMsg);
+                
+                if (!input.value.trim()) {
+                    input.classList.add('error');
+                    errorMsg.textContent = input.id === 'email' ? 'Email is required' : 'This field is required';
+                    group.appendChild(errorMsg);
+                    isValid = false;
+                } else if (input.id === 'email' && !/^[^@]+@[^@]+\.[^@]+$/.test(input.value)) {
+                    input.classList.add('error');
+                    errorMsg.textContent = 'Please enter a valid email';
+                    group.appendChild(errorMsg);
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+
+        // Real-time validation on input
+        contactForm.querySelectorAll('input, textarea').forEach(function(input) {
+            input.addEventListener('input', function() {
+                const group = this.closest('.form-group');
+                const errorMsg = group.querySelector('.error-message');
+                if (errorMsg) errorMsg.remove();
+                this.classList.remove('error');
+            });
+        });
+
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
             
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
@@ -167,8 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     style.textContent = '.animate-in { opacity: 1 !important; transform: translateY(0) !important; }';
     document.head.appendChild(style);
 
-    console.log('%c🚀 NextGen Web IT Solutions', 'font-size: 20px; font-weight: bold; color: #00d4ff;');
-    console.log('%cWebsite developed by Shaun Tshabalala', 'font-size: 14px; color: #666;');
+
 
 });
 
