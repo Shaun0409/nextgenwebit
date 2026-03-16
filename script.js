@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
         });
     }
-
+ 
     navLinks.forEach(function(link) {
         link.addEventListener('click', function() {
             mobileMenuBtn.classList.remove('active');
