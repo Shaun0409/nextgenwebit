@@ -312,3 +312,109 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+/**
+ * NEW JAVASCRIPT - Add to existing script.js
+ */
+
+// --- Parallax Scrolling for Tech Badges ---
+document.addEventListener('DOMContentLoaded', function() {
+    const techBadges = document.querySelectorAll('.tech-badge');
+    
+    if (techBadges.length > 0) {
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            techBadges.forEach(function(badge, index) {
+                const speed = 0.02 + (index * 0.005);
+                const yOffset = scrollY * speed;
+                badge.style.transform = `translateY(${yOffset}px)`;
+            });
+        }, { passive: true });
+    }
+
+    // --- Workflow Step Animation ---
+    const workflowSteps = document.querySelectorAll('.workflow-step');
+    
+    if ('IntersectionObserver' in window && workflowSteps.length > 0) {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry, index) {
+                if (entry.isIntersecting) {
+                    setTimeout(function() {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 150);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        workflowSteps.forEach(function(step) {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(20px)';
+            step.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(step);
+        });
+    }
+
+    // --- Learning Cards Animation ---
+    const learningCards = document.querySelectorAll('.learning-card');
+    
+    if ('IntersectionObserver' in window && learningCards.length > 0) {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry, index) {
+                if (entry.isIntersecting) {
+                    setTimeout(function() {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 150);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        learningCards.forEach(function(card) {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    }
+
+    // --- Choose Cards Animation ---
+    const chooseCards = document.querySelectorAll('.choose-card');
+    
+    if ('IntersectionObserver' in window && chooseCards.length > 0) {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry, index) {
+                if (entry.isIntersecting) {
+                    setTimeout(function() {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'scale(1)';
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        chooseCards.forEach(function(card) {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            observer.observe(card);
+        });
+    }
+
+    // --- Floating Shapes Parallax ---
+    const shapes = document.querySelectorAll('.shape');
+    
+    if (shapes.length > 0) {
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            shapes.forEach(function(shape, index) {
+                const speed = 0.015 + (index * 0.01);
+                const yOffset = scrollY * speed;
+                shape.style.transform = `translateY(${yOffset}px)`;
+            });
+        }, { passive: true });
+    }
+});

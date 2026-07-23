@@ -1281,3 +1281,309 @@ h1, h2, h3, h4 {
     .stats-grid { grid-template-columns: 1fr; }
     .section-title { font-size: 1.8rem; }
 }
+
+/* ========================================
+   NEW STYLES - Add to existing styles.css
+   ======================================== */
+
+/* --- Floating Tech Stack --- */
+.tech-stack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.tech-badge {
+    position: absolute;
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    animation: floatTech 8s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+@keyframes floatTech {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.5; }
+    50% { transform: translateY(-20px) scale(1.05); opacity: 0.9; }
+}
+
+/* --- Hero Background Shapes --- */
+.hero-bg-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.05;
+    animation: shapeFloat 20s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    right: -100px;
+    background: var(--accent);
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    left: -50px;
+    background: var(--purple);
+    animation-delay: 5s;
+}
+
+.shape-3 {
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    background: var(--accent);
+    animation-delay: 10s;
+}
+
+@keyframes shapeFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.1); }
+    66% { transform: translate(-20px, 30px) scale(0.9); }
+}
+
+/* --- Digital Learning Section --- */
+.digital-learning {
+    padding: 100px 0;
+    background: var(--secondary);
+}
+
+.learning-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.learning-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius);
+    padding: 30px 24px;
+    transition: var(--transition);
+}
+
+.learning-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 212, 255, 0.15);
+}
+
+.learning-card.featured {
+    border-color: rgba(0, 212, 255, 0.2);
+    background: rgba(0, 212, 255, 0.04);
+}
+
+.learning-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.learning-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.learning-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.learning-list {
+    list-style: none;
+    padding: 0;
+}
+
+.learning-list li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 4px 0;
+}
+
+/* --- Workflow Section --- */
+.workflow {
+    padding: 100px 0;
+    background: var(--bg-dark);
+}
+
+.workflow-container {
+    position: relative;
+    padding: 40px 0;
+}
+
+.workflow-line {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: var(--border-glass);
+    transform: translateY(-50%);
+}
+
+.workflow-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    gap: 10px;
+}
+
+.workflow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.workflow-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.workflow-step:hover .workflow-icon {
+    border-color: var(--accent);
+    transform: scale(1.1);
+    box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.workflow-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.workflow-connector {
+    width: 20px;
+    height: 2px;
+    background: var(--border-glass);
+    position: absolute;
+    right: -15px;
+    top: 30px;
+}
+
+.workflow-step:last-child .workflow-connector {
+    display: none;
+}
+
+/* --- Why Choose Section --- */
+.why-choose {
+    padding: 100px 0;
+    background: var(--secondary);
+}
+
+.choose-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.choose-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius);
+    padding: 28px 20px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.choose-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 212, 255, 0.15);
+}
+
+.choose-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.choose-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.choose-description {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* --- Responsive Updates --- */
+@media (max-width: 1024px) {
+    .learning-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .choose-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .workflow-steps {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .workflow-line {
+        display: none;
+    }
+    .workflow-connector {
+        display: none;
+    }
+    .tech-badge {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .learning-grid {
+        grid-template-columns: 1fr;
+    }
+    .choose-grid {
+        grid-template-columns: 1fr;
+    }
+    .workflow-step {
+        flex: 0 0 calc(33.33% - 10px);
+    }
+    .workflow-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
